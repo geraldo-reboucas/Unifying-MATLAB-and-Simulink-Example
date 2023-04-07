@@ -10,6 +10,7 @@ classdef lookup < spring.spring
             obj.x = 0.5*pts;
             obj.K = -12000*tanh(pts);
             obj.x0 = 0;
+            obj.mdl = 'springLookup_mdl';
         end
 
         function plotForceVsDisplacement(obj)

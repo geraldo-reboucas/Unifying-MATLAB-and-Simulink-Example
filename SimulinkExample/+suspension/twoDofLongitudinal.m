@@ -6,6 +6,7 @@ classdef twoDofLongitudinal < suspension.vehicleSuspension
 
     methods
         function obj = twoDofLongitudinal()
+            obj.mdl = 'suspensionTwoDOFLongitudinal';
             obj.Front = suspension.springDamperLinear;
             obj.Rear = suspension.springDamperLinear;
         end

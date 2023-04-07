@@ -11,6 +11,7 @@ classdef lookup2D < damper.damper
             obj.dx = 1*pts;
             [X,DX] = meshgrid(obj.x,obj.dx);
             obj.C = -10000*tanh(X).*abs(tanh(DX));
+            obj.mdl = 'damperLookup2D';
         end
     end
 end

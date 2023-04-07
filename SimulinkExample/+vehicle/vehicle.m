@@ -1,10 +1,15 @@
-classdef (Abstract) vehicle < slPart
+classdef (Abstract) vehicle < slVASPart
     properties
         Suspension 
         Body
     end
 
         methods
+            function obj = vehicle()
+                obj.mdl = 'vehicle_mdl';
+                obj.VariantChoices = {obj.mdl};
+            end
+
             function plotCG(obj)
 %                 figure
                 subplot(3,1,1)

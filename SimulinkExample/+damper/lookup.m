@@ -8,6 +8,7 @@ classdef lookup < damper.damper
             pts = -5:5;
             obj.dx = 0.1*pts;
             obj.C = -1000*tanh(pts);
+            obj.mdl = 'damperLookup';
         end
 
         function plotForceVsDisplacement(obj)

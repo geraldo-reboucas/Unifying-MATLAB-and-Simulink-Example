@@ -8,6 +8,7 @@ classdef linear < spring.spring
         function obj = linear()
             obj.K = 21000;
             obj.x0 = 0;
+            obj.mdl = 'springLinear_mdl';
         end
     end
 end

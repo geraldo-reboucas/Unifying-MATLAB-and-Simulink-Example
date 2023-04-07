@@ -1,4 +1,4 @@
-classdef (Abstract) body < slPart
+classdef (Abstract) body < slVASPart
     properties
         W   % half of lateral hub displacement from body CG
         L   % half of longitudinal hub displacement from body CG
@@ -8,6 +8,12 @@ classdef (Abstract) body < slPart
     end
 
     methods
+
+        function obj = body()
+            obj.mdl = 'body_mdl';
+            obj.VariantChoices = {obj.mdl};
+        end
+
         function plotHeight(obj)
             plot(obj.Log{1}.Values.plot);
         end

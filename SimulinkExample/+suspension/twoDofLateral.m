@@ -6,6 +6,7 @@ classdef twoDofLateral < suspension.vehicleSuspension
 
     methods
         function obj = twoDofLateral()
+            obj.mdl = 'suspensionTwoDOFLateral';
             obj.Left = suspension.springDamperLinear;
             obj.Right = suspension.springDamperLinear;
         end

@@ -8,6 +8,7 @@ classdef threeDof < suspension.vehicleSuspension
 
     methods
         function obj = threeDof()
+            obj.mdl = 'suspensionThreeDOF';
             obj.FrontLeft = suspension.springDamperLinear;
             obj.FrontRight = suspension.springDamperLinear;
             obj.RearLeft = suspension.springDamperLinear;

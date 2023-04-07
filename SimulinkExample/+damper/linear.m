@@ -6,6 +6,7 @@ classdef linear < damper.damper
     methods
         function obj = linear()
             obj.C = 2500;
+            obj.mdl = 'damperLinear';
         end
     end
 end

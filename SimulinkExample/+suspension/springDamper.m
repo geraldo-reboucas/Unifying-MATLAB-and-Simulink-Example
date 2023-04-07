@@ -1,4 +1,4 @@
-classdef (Abstract) springDamper < slPart
+classdef (Abstract) springDamper < slVASPart
     properties
         Spring
         Damper
@@ -6,6 +6,8 @@ classdef (Abstract) springDamper < slPart
 
     methods
         function obj = springDamper()
+            obj.mdl = 'suspension';
+            obj.VariantChoices = {obj.mdl};
             obj.Spring = spring.linear;
             obj.Damper = damper.linear;
         end

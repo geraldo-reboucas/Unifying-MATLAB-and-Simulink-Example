@@ -5,6 +5,7 @@ classdef oneDof < suspension.vehicleSuspension
 
     methods
         function obj = oneDof()
+            obj.mdl = 'suspensionOneDOF';
             obj.Suspension = suspension.springDamperLinear;
         end
     end
