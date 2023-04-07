@@ -11,18 +11,14 @@ classdef (Abstract) vehicle < slVASPart
             end
 
             function plotCG(obj)
-%                 figure
-                subplot(3,1,1)
-                plot(obj.Log.get('z').Values)
-                subplot(3,1,2)
-                plot(obj.Log.get('roll').Values)
-                subplot(3,1,3)
-                plot(obj.Log.get('pitch').Values)
+                T = obj.Log.extractTimetable;
+                stackedplot(T);
             end
 
             function plotZ(obj)
 %                 figure
-                plot(obj.Log.get('z').Values)
+                T = obj.Log.extractTimetable;
+                stackedplot(T,"z")
             end
         end
 end
