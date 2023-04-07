@@ -10,12 +10,29 @@ classdef slPart < handle & matlab.mixin.CustomDisplay
             % If the block has variants, set active variant based on the object class
             if strcmp(get_param(blk,'Variant'),'on')
                 variantChoices = get_param(blk,'VariantChoices'); % Get all variant choices
-                classList = {class(obj),superclasses(obj)}; % Get the list of class and superclasses
-                classList = cat(1,classList{:});
-                matchingChoices = intersect(classList,{variantChoices.Name}); % Find the label that matches the class or closest superclass
-                set_param(blk,'LabelModeActiveChoice',matchingChoices{1}); % Apply the first match
+                if ~isempty(variantChoices)
+                    classList = {class(obj),superclasses(obj)}; % Get the list of class and superclasses
+                    classList = cat(1,classList{:});
+                    matchingChoices = intersect(classList,{variantChoices.Name}); % Find the label that matches the class or closest superclass
+                    if ~isempty(matchingChoices)
+                        set_param(blk,'LabelModeActiveChoice',matchingChoices{1}); % Apply the first match
+                    else
+                        disp(['No matching choice found for ' blk]);
+                    end
+                end
             end
         end
+        
+        function variantList = getVariantChoices(obj)
+            variantList = {};
+        end
+
+
+
+        % function getVariantChoices(obj)
+        % 
+        % end
+
 
         function obj = getLog(obj,out)
             if not(isempty(out.logsout))
@@ -46,28 +63,28 @@ classdef slPart < handle & matlab.mixin.CustomDisplay
         end
     end
 
-    methods  (Access = protected)
-        function str = getHeader(obj)
-            % Hyperlink to edit the file
-            str1 = sprintf(['slPart <a href="matlab:edit(''' class(obj) ''')">' class(obj) '</a>\n']);
-            if isempty(obj.BlockPath)
-                str2 = sprintf('Instantiated in: --- unset ---');
-            else
-                % Hyperlink to open the subsystem where the objec tis being used
-                str2 = sprintf(['Instantiated in: <a href="matlab:open_system(''' char(obj.BlockPath) ''',''force'')">' char(obj.BlockPath) '</a>\n']);
-            end
-            str = [str1 str2 ];
-        end
-
-        function str = getFooter(obj)
-            % Display number of logged signals
-            if isempty(obj.Log)
-                str = sprintf('No logged data\n');
-            else
-                str = sprintf(['Number of logged signals = ' num2str(obj.Log.numElements)]);
-            end
-        end
-    end
+    % methods  (Access = protected)
+    %     function str = getHeader(obj)
+    %         % Hyperlink to edit the file
+    %         str1 = sprintf(['slPart <a href="matlab:edit(''' class(obj) ''')">' class(obj) '</a>\n']);
+    %         if isempty(obj.BlockPath)
+    %             str2 = sprintf('Instantiated in: --- unset ---');
+    %         else
+    %             % Hyperlink to open the subsystem where the objec tis being used
+    %             str2 = sprintf(['Instantiated in: <a href="matlab:open_system(''' char(obj.BlockPath) ''',''force'')">' char(obj.BlockPath) '</a>\n']);
+    %         end
+    %         str = [str1 str2 ];
+    %     end
+    % 
+    %     function str = getFooter(obj)
+    %         % Display number of logged signals
+    %         if isempty(obj.Log)
+    %             str = sprintf('No logged data\n');
+    %         else
+    %             str = sprintf(['Number of logged signals = ' num2str(obj.Log.numElements)]);
+    %         end
+    %     end
+    % end
 end
 % Copyright 2022 The MathWorks, Inc.
 
